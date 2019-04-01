@@ -4,8 +4,8 @@ bindir = $(prefix)/bin
 build:
 	swift build -c release
 
-test:
-	swift test
+test: build
+	swift test -c release
 
 install: build
 	install ".build/release/whenami" "$(bindir)"
@@ -16,4 +16,4 @@ uninstall:
 clean:
 	rm -rf .build
 
-.PHONY: build install uninstall clean
+.PHONY: build test install uninstall clean
