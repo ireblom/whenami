@@ -20,6 +20,6 @@ clean:
 	rm -rf .build
 
 distclean: clean
-	rm -rf whenami.generate-xcodeproj
+	rm -rf whenami.xcodeproj
 
 .PHONY: build test install uninstall xcodeproj clean distclean
