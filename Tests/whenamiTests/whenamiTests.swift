@@ -8,21 +8,30 @@ final class whenamiTests: XCTestCase {
             return
         }
         
-        let fooBinary = productsDirectory.appendingPathComponent("whenami")
+        let whenamiBinary = productsDirectory.appendingPathComponent("whenami")
         
         let process = Process()
-        process.executableURL = fooBinary
+        process.executableURL = whenamiBinary
         
-        let pipe = Pipe()
-        process.standardOutput = pipe
+        let outPipe = Pipe()
+        process.standardOutput = outPipe
+        let errPipe = Pipe()
+        process.standardError = errPipe
         
         try process.run()
         process.waitUntilExit()
         
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)
+        XCTAssertEqual(process.terminationStatus, 0)
         
-        XCTAssertEqual(output, "now\n")
+        let outData = outPipe.fileHandleForReading.readDataToEndOfFile()
+        let output = String(data: outData, encoding: .utf8)
+        let expectedOutput = "now\n"
+        XCTAssertEqual(output, expectedOutput)
+        
+        let errData = errPipe.fileHandleForReading.readDataToEndOfFile()
+        let error = String(data: errData, encoding: .utf8)
+        let expectedError = ""
+        XCTAssertEqual(error, expectedError)
     }
     
     func testHelpArgs() throws {
