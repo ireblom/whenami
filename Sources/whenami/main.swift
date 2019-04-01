@@ -5,10 +5,10 @@ let arguments = CommandLine.arguments
 if arguments.count > 1 {
     let executable = URL(fileURLWithPath: arguments[0]).lastPathComponent
     let usage = "usage: \(executable) [-h] [-v]"
-
+    
     if arguments.count == 2 {
         let argument = arguments[1].trimmingCharacters(in: .whitespacesAndNewlines)
-
+        
         if argument == "-h" || argument == "--help" {
             print(usage);
             print()
@@ -22,7 +22,7 @@ if arguments.count > 1 {
             exit(EXIT_SUCCESS)
         }
     }
-
+    
     let userName = NSUserName()
     let apology = "I'm sorry \(userName). I'm afraid I can't do that."
     let invalidArguments = arguments[1...arguments.count-1].joined(separator:" ")
