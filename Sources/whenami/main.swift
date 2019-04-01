@@ -19,7 +19,7 @@ if arguments.count > 1 {
 
     let userName = NSUserName()
     let apology = "I'm sorry \(userName). I'm afraid I can't do that."
-    let invalidArguments = arguments.joined(separator:" ")
+    let invalidArguments = arguments[1...arguments.count-1].joined(separator:" ")
     let errorMessage = "\(usage)\n\(apology)\n  \(invalidArguments)\n"
     let standardError = FileHandle.standardError
     standardError.write(errorMessage.data(using: .utf8)!)
