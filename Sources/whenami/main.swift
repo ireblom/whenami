@@ -1,9 +1,10 @@
 import Foundation
 
+let version = "4.1.2019"
 let arguments = CommandLine.arguments
 if arguments.count > 1 {
     let executable = URL(fileURLWithPath: arguments[0]).lastPathComponent
-    let usage = "usage: \(executable) [-h]"
+    let usage = "usage: \(executable) [-h] [-v]"
 
     if arguments.count == 2 {
         let argument = arguments[1].trimmingCharacters(in: .whitespacesAndNewlines)
@@ -12,7 +13,12 @@ if arguments.count > 1 {
             print(usage);
             print()
             print("optional arguments:")
-            print("  -h, --help  show this help message and exit")
+            print("  -h, --help     show this help message and exit")
+            print("  -v, --version  show version number and exit")
+            exit(EXIT_SUCCESS)
+        }
+        if argument == "-v" || argument == "--version" {
+            print(version)
             exit(EXIT_SUCCESS)
         }
     }
