@@ -1,5 +1,6 @@
 prefix ?= /usr/local
 bindir = $(prefix)/bin
+mandir = $(prefix)/share/man/man1
 
 build:
 	swift build -c release
@@ -8,10 +9,12 @@ test: build
 	swift test -c release
 
 install: build
-	install ".build/release/whenami" "$(bindir)"
+	install -m 0555 ".build/release/whenami" "$(bindir)"
+	install -m 0444 "Docs/whenami.1" "$(mandir)"
 
 uninstall:
-	rm -rf "$(bindir)/whenami"
+	rm -f "$(bindir)/whenami"
+	rm -f "$(mandir)/whenami.1"
 
 xcodeproj:
 	swift package generate-xcodeproj
