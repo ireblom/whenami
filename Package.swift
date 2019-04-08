@@ -8,6 +8,6 @@ let package = Package(
         .target(
             name: "whenami", dependencies: []),
         .testTarget(
-            name: "whenamiTests", dependencies: ["whenami"]),
+            name: "WhenamiTests", dependencies: ["whenami"])
     ]
 )
