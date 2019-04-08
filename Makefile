@@ -19,10 +19,13 @@ uninstall:
 xcodeproj:
 	swift package generate-xcodeproj
 
+lint:
+	swiftlint --strict
+
 clean:
 	rm -rf .build
 
 distclean: clean
 	rm -rf whenami.xcodeproj
 
-.PHONY: build test install uninstall xcodeproj clean distclean
+.PHONY: build test install uninstall xcodeproj lint clean distclean
